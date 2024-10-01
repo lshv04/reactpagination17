@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import Spinner from "react-bootstrap/Spinner";
 
 const options = {
   method: "GET",
@@ -19,16 +20,20 @@ const Series = () => {
     options
   );
 
-  if (loading) {
-    return <h2>Carregando...</h2>; // Exibe uma mensagem de carregamento
-  }
+  if (loading)
+    return (
+      <div className="d-flex justify-content-center m-5 pt-3">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    );
+
 
   if (error) {
     return <h2>Erro: {error.message}</h2>; // Exibe uma mensagem de erro, se houver
   }
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 pt-5">
       <div className="row">
         <div className="col-12 d-flex justify-content-center align-items-center flex-column">
           <img
@@ -36,8 +41,14 @@ const Series = () => {
             className="img-fluid"
             alt={data.name}
           />
-          <h1>{data.name}</h1>
-          <p>id: {data.id}</p>
+           <img
+            src={`https://image.tmdb.org/t/p/w500${data.networks[0].logo_path}`}
+            className="logopic m-3"
+            alt={data.name}
+          />
+
+          <h3 className=" text-center m-3">{data.name}</h3>
+    
           <p>{data.overview}</p>
 
           <p>
@@ -48,12 +59,12 @@ const Series = () => {
           </p>
 
           <div>
-            <strong>Seasons:</strong>
+            <strong><p>Seasons:</p></strong>
             <ul>
               {data.seasons.map((season) => (
-                <li key={season.season_number}>
+                <li key={season.season_number} >
                   {/* Cria o Link dinâmico para a rota /series/:id/seasons/:seasonNumber */}
-                  <Link to={`/series/${data.id}/seasons/${season.season_number}`}>
+                  <Link to={`/series/${data.id}/seasons/${season.season_number}`} className="lilink">
                     Season {season.season_number} - {season.episode_count} episodes
                   </Link>
                 </li>

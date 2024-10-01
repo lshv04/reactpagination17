@@ -3,6 +3,8 @@ import { useLocation, Link} from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { useState, useEffect } from 'react';
 import {Pagination} from 'react-bootstrap';
+import Spinner from "react-bootstrap/Spinner";
+
 
 
 const options = {
@@ -41,9 +43,12 @@ const Detail = () => {
   }, [data]);
 
 
-  if (loading) {
-    return <h2>Carregando...</h2>; // Exibe uma mensagem de carregamento
-  }
+  if (loading)
+    return (
+      <div className="d-flex justify-content-center m-5 pt-3">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    );
 
   if (error) {
     return <h2>Erro: {error.message}</h2>; // Exibe uma mensagem de erro, se houver
@@ -99,31 +104,32 @@ const Detail = () => {
 
 
   return (
-    <div className="container mt-5">
-      <h1>Details</h1>
+    <div className="container mt-5 pt-5">
+     
+      <h3 className='text-center'>Serie´s List</h3>
       <Pagination>{paginationItems}</Pagination>
       {query ? (
         <div className="row">
           {data.results.map((series) => (
             <div className="col-12 col-md-6 col-lg-3 mb-4" key={series.id}>
               {/* Bootstrap Card */}
-              <div className="card h-100">
+              <div className="card h-100   border-0">
                 {/* Imagem do Card */}
                 <img
                   src={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
                   className="card-img-top"
                   alt={series.name}
                 />
-                <div className="card-body">
+                <div className="card-body ">
                   <h5 className="card-title">{series.name}</h5>
-                  <p className="card-text">ID: {series.id}</p>
+                  
                   
                 </div>
                 <div className="card-footer">
-                  <small className="text-muted">Rating: {series.vote_average}</small>
+                  <small ><span><i className="bi bi-star-fill"></i></span> {series.vote_average}</small>
                 </div>
                        {/* Link para a página de Series com o series.id */}
-                       <Link to={`/series/${series.id}`} className="btn btn-primary">
+                       <Link to={`/series/${series.id}`} className="btn btn-secondary rounded-0">
                   More Details
                 </Link>
               </div>
@@ -131,11 +137,12 @@ const Detail = () => {
             </div>
             
           ))}
-          <Pagination>{paginationItems}</Pagination>
+      
         </div>
       ) : (
         <p>No query was provided.</p>
       )}
+          <Pagination>{paginationItems}</Pagination>
     </div>
   );
 };
