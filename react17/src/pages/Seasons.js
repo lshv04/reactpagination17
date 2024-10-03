@@ -13,7 +13,7 @@ const options = {
 };
 
 const Seasons = () => {
-  const { id, seasonNumber } = useParams(); // Extrai o ID da série e o número da temporada
+  const { id, seasonNumber } = useParams(); 
 
   const { data, loading, error } = useFetch(
     `https://api.themoviedb.org/3/tv/${id}/season/${seasonNumber}?language=en-US`,
@@ -28,7 +28,7 @@ const Seasons = () => {
     );
 
   if (error) {
-    return <h2>Erro: {error.message}</h2>; // Exibe uma mensagem de erro, se houver
+    return <h2>Erro: {error.message}</h2>; 
   }
 
   return (
@@ -59,7 +59,7 @@ const Seasons = () => {
               </p>
             </div>
             <div className="card-footer">
-              <ul>
+              <ul className="list-unstyled ">
                 {data.episodes.map((episode) => (
                   <li key={episode.episode_number}>
                     <Link

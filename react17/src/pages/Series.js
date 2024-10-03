@@ -13,7 +13,7 @@ const options = {
 };
 
 const Series = () => {
-  const { id } = useParams(); // Extrai o ID da série da URL
+  const { id } = useParams(); 
 
   const { data, loading, error } = useFetch(
     `https://api.themoviedb.org/3/tv/${id}?language=en-US`,
@@ -27,9 +27,8 @@ const Series = () => {
       </div>
     );
 
-
   if (error) {
-    return <h2>Erro: {error.message}</h2>; // Exibe uma mensagem de erro, se houver
+    return <h2>Erro: {error.message}</h2>; 
   }
 
   return (
@@ -41,14 +40,21 @@ const Series = () => {
             className="img-fluid"
             alt={data.name}
           />
-           <img
-            src={`https://image.tmdb.org/t/p/w500${data.networks[0].logo_path}`}
+          <img
+            src={
+              data.networks[0]?.logo_path
+                ? `https://image.tmdb.org/t/p/w500${data.networks[0].logo_path}`
+                : "URL_da_imagem_padrao" 
+            }
             className="logopic m-3"
             alt={data.name}
           />
+          {!data.networks[0]?.logo_path && (
+            <p className="text-muted">Imagem não disponível</p> 
+          )}
 
           <h3 className=" text-center m-3">{data.name}</h3>
-    
+
           <p>{data.overview}</p>
 
           <p>
@@ -59,13 +65,19 @@ const Series = () => {
           </p>
 
           <div>
-            <strong><p>Seasons:</p></strong>
-            <ul>
+            <strong>
+              <p>Seasons:</p>
+            </strong>
+            <ul className="list-unstyled">
               {data.seasons.map((season) => (
-                <li key={season.season_number} >
+                <li key={season.season_number}>
                   {/* Cria o Link dinâmico para a rota /series/:id/seasons/:seasonNumber */}
-                  <Link to={`/series/${data.id}/seasons/${season.season_number}`} className="lilink">
-                    Season {season.season_number} - {season.episode_count} episodes
+                  <Link
+                    to={`/series/${data.id}/seasons/${season.season_number}`}
+                    className="lilink"
+                  >
+                    Season {season.season_number} - {season.episode_count}{" "}
+                    episodes
                   </Link>
                 </li>
               ))}

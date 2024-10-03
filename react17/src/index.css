@@ -8,6 +8,7 @@
   --color1:#131516;
   --color2:#fb0200;
   --color3:#fff;
+  --color4:#ec4926;
   --fontsize1:2rem;
   --fontsize2:1.5rem;
   --fontseize3:1rem;
@@ -70,8 +71,10 @@ body{
 .card-footer i{
   color: yellow;
 }
-.card-footer small{
+.card-footer {
   color:var(--color2);
+  font-weight: 500;
+  font-size: var(--fontsize3);
 }
 h3{
   color:var(--color3);
@@ -87,9 +90,10 @@ p{
   color:var(--color3);
   font-size: var(--fontsize2);
   text-underline-offset:10px;
+  list-style: none;
 }
 .lilink:hover{
-  color:var(--color2);
+  color:var(--color4);
   
 }
 .card-img-top {
@@ -102,3 +106,31 @@ p{
   background-color: var(--color3);
 
 }
+.sticker {
+  display: flex;
+  flex-direction: row; /* Alinha os links horizontalmente */
+  background-color: transparent; /* Fundo claro */
+  gap:var(--fontsize1);
+  border-radius: 5px; /* Bordas arredondadas */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  margin-top: 1rem;
+  justify-content: start; /* Centraliza os itens */
+}
+
+.sticker a {
+  text-decoration: none; /* Remove o sublinhado dos links */
+  color: var(--color3);
+  font-size: var(--fontsize1);
+  transition: color 0.3s; /* Transição suave para a cor */
+  display: flex; /* Alinha ícone e texto */
+  align-items: center; /* Centraliza verticalmente */
+}
+
+
+
+.sticker a:hover {
+  color: #0056b3; /* Cor ao passar o mouse */
+}
+
+
+

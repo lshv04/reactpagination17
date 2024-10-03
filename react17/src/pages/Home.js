@@ -1,6 +1,8 @@
 import React from 'react';
 import Searchbar from '../components/Searchbar';
 import backgroundImage from '../img/background.jpg'; 
+import Sticker from '../components/Sticker';
+
 
 const Home = () => {
   return (
@@ -17,6 +19,7 @@ const Home = () => {
       <h1>Look up your favorite <br /> tv serie´s right now!</h1>
       <p>Try tiping key words of your favorite tv series and <br /> enjoy all the information you could get from it!</p>
       <Searchbar/>
+      <Sticker/>
       </div>
     </div>
    

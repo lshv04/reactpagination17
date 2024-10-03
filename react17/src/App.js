@@ -7,6 +7,8 @@ import Seasons from "./pages/Seasons";
 import Episodes from "./pages/Episodes"; 
 import Mynavbar from './components/Navbar';
 
+
+
 const App = () => {
   return (
     <Router>
@@ -20,7 +22,9 @@ const App = () => {
         <Route path="/series/:id/seasons/:seasonNumber/episodes/:episodeNumber" element={<Episodes />} /> 
       </Routes>
       
+
     </Router>
+   
   );
 };
 

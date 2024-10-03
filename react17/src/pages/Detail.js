@@ -22,7 +22,7 @@ const Detail = () => {
   const [totalPages, setTotalPages] = useState(1); // Estado para o total de páginas
 
   // Define o máximo de páginas exibidas
-  const MAX_PAGES_TO_SHOW = 10;
+  const MAX_PAGES_TO_SHOW = 5;
 
   const location = useLocation();
 
@@ -51,7 +51,7 @@ const Detail = () => {
     );
 
   if (error) {
-    return <h2>Erro: {error.message}</h2>; // Exibe uma mensagem de erro, se houver
+    return <h2>Erro: {error.message}</h2>; 
   }
 
 
@@ -79,7 +79,7 @@ const Detail = () => {
   );
 
  
-  // Gerar as páginas, limitando a 10 no máximo
+ 
   for (let number = startPage; number <= endPage; number++) {
     paginationItems.push(
       <Pagination.Item
@@ -101,6 +101,8 @@ const Detail = () => {
     />
   );
 
+  // Ordenando o array de resultados por 'vote_average' do maior para o menor
+  const sortedResults = data.results.sort((a, b) => b.vote_average - a.vote_average);
 
 
   return (
@@ -110,7 +112,7 @@ const Detail = () => {
       <Pagination>{paginationItems}</Pagination>
       {query ? (
         <div className="row">
-          {data.results.map((series) => (
+          {sortedResults.map((series) => (
             <div className="col-12 col-md-6 col-lg-3 mb-4" key={series.id}>
               {/* Bootstrap Card */}
               <div className="card h-100   border-0">
@@ -126,7 +128,7 @@ const Detail = () => {
                   
                 </div>
                 <div className="card-footer">
-                  <small ><span><i className="bi bi-star-fill"></i></span> {series.vote_average}</small>
+              <span><i className="bi bi-star-fill"></i></span> {series.vote_average}
                 </div>
                        {/* Link para a página de Series com o series.id */}
                        <Link to={`/series/${series.id}`} className="btn btn-secondary rounded-0">
