@@ -5,7 +5,7 @@
 
 # Projeto Pessoal - React Pagination (Dinamic router) -17
 
-Este projeto é um site de portfólio pessoal desenvolvido com o objetivo de praticar paginação dinâmica utilizando o pacote React Router. Trabalhei para fazer 4 níveis de paginação, mantendo a URL de forma clara e coesa. Também acrescentei um novo buscador que envia a busca para uma nova página, ao invés de alimentar a mesma página.
+Este projeto é um site de portfólio pessoal desenvolvido com o objetivo de praticar paginação dinâmica utilizando o pacote React Router. Trabalhei para fazer 4 níveis de paginação e múltiplos consumos de API, mantendo a URL de forma clara e coesa. Também acrescentei um novo buscador que envia a busca para uma nova página, ao invés de alimentar a mesma página.
 
 
       
